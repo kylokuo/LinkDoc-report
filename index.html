@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>零氪 × 北肿合作模式研究</title>
+  <style>
+    :root{--bg:#f6f8fb;--card:#fff;--ink:#142033;--muted:#607089;--line:#dfe6ef;--blue:#2563eb;--blue-soft:#e9f0ff;--green:#087f5b;--green-soft:#e7f7f0;--amber:#a45b00;--amber-soft:#fff4dd;--red:#b42318;--red-soft:#ffe9e7;--shadow:0 12px 36px rgba(25,45,75,.08)}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 "Microsoft YaHei",system-ui,sans-serif} a{color:var(--blue)} button,input,select{font:inherit} button{cursor:pointer}
+    .shell{max-width:1240px;margin:auto;padding:28px 20px 56px}.hero{background:linear-gradient(135deg,#152b54,#1d5bbd);color:#fff;border-radius:22px;padding:34px 36px;box-shadow:var(--shadow)}
+    .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:12px;opacity:.78}.hero h1{margin:8px 0 8px;font-size:clamp(27px,4vw,42px);line-height:1.2}.hero p{max-width:850px;margin:0;color:#dbe8ff}.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.hero-meta span{border:1px solid rgba(255,255,255,.28);padding:5px 10px;border-radius:999px;font-size:12px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 4px 18px rgba(25,45,75,.04)}.stat b{display:block;font-size:28px;line-height:1.2}.stat span{color:var(--muted);font-size:13px}
+    .toolbar{position:sticky;top:0;z-index:5;background:rgba(246,248,251,.94);backdrop-filter:blur(10px);padding:12px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap;align-items:center}.toolbar input,.toolbar select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 11px;color:var(--ink)}.toolbar input{min-width:240px;flex:1}.toolbar button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 13px}.toolbar button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+    .section{margin-top:28px}.section h2{font-size:23px;margin:0 0 10px}.section-intro{color:var(--muted);margin:0 0 14px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 5px 20px rgba(25,45,75,.04)}
+    .timeline{display:grid;grid-template-columns:110px 1fr;gap:0 18px}.time{color:var(--blue);font-weight:700;padding:18px 0;border-top:1px solid var(--line)}.event{padding:18px 0;border-top:1px solid var(--line)}.event h3{margin:0 0 4px;font-size:17px}.event p{margin:0;color:var(--muted)}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tab{border:1px solid var(--line);background:var(--card);padding:9px 13px;border-radius:10px;color:var(--muted)}.tab.active{background:var(--blue-soft);border-color:#a9c1ff;color:var(--blue);font-weight:700}.panel[hidden]{display:none}
+    .project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.project{border:1px solid var(--line);border-radius:14px;padding:17px;background:var(--card)}.project h3{margin:0 0 5px;font-size:17px}.project p{margin:0;color:var(--muted)}.project .tags{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}.tag{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:12px}.tag.green{background:var(--green-soft);color:var(--green)}.tag.amber{background:var(--amber-soft);color:var(--amber)}
+    .flow{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;align-items:stretch}.step{position:relative;border:1px solid var(--line);background:var(--card);border-radius:13px;padding:14px 10px;min-height:135px}.step:not(:last-child)::after{content:"→";position:absolute;right:-14px;top:48px;color:var(--blue);font-weight:700;font-size:20px;z-index:2}.step b{display:block;color:var(--blue);font-size:12px;margin-bottom:5px}.step strong{display:block;line-height:1.35}.step small{display:block;color:var(--muted);margin-top:7px;font-size:12px}
+    .notice{border-left:4px solid var(--amber);background:var(--amber-soft);padding:13px 16px;border-radius:10px;color:#704300}.good{border-left-color:var(--green);background:var(--green-soft);color:#07563f}.danger{border-left-color:var(--red);background:var(--red-soft);color:#782019}
+    table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}.table-wrap{overflow:auto;border-radius:14px}th,td{text-align:left;padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#f0f4fa;font-size:13px;white-space:nowrap}td{min-width:130px}tr:last-child td{border-bottom:0}.level{font-weight:700;white-space:nowrap}.level.a{color:var(--green)}.level.b{color:var(--blue)}.level.c{color:var(--amber)}.level.d{color:var(--red)}
+    .role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.role{padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--card)}.role strong{display:block;margin-bottom:4px}.role p{margin:0;color:var(--muted);font-size:14px}.role .level{font-size:12px;float:right}
+    details{border-top:1px solid var(--line);padding:13px 0}details:first-child{border-top:0}summary{cursor:pointer;font-weight:700}details p{color:var(--muted);margin:8px 0 0}.source-list{padding-left:22px}.source-list li{margin:8px 0}.footer{margin-top:34px;color:var(--muted);font-size:13px;text-align:center}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(4,1fr)}.step:not(:last-child)::after{display:none}.project-grid,.role-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.shell{padding:15px 12px 40px}.hero{padding:25px 20px;border-radius:17px}.grid{grid-template-columns:1fr 1fr;gap:8px}.stat{padding:13px}.stat b{font-size:23px}.timeline{grid-template-columns:72px 1fr;gap:0 10px}.flow{grid-template-columns:1fr 1fr}.step{min-height:120px}.toolbar{position:static}.toolbar input{min-width:100%}th,td{padding:10px;font-size:13px}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="hero">
+    <div class="eyebrow">Evidence-first research dashboard</div>
+    <h1>零氪科技 × 北京大学肿瘤医院</h1>
+    <p>合作模式、患者入组路径、项目范围、收费边界与零氪参与能力的互动研究报告。</p>
+    <div class="hero-meta"><span>更新：2026-10-27</span><span>公开资料研究</span><span>事实 / 推定 / 待核实分层</span></div>
+  </header>
+
+  <section class="grid" aria-label="关键摘要">
+    <div class="stat"><b>3</b><span>主要合作层次：科研、数字化、患者导航</span></div>
+    <div class="stat"><b>8</b><span>已公开项目或能力类型</span></div>
+    <div class="stat"><b>0</b><span>公开确认的患者“入院费/入组费”</span></div>
+    <div class="stat"><b>10+</b><span>可能参与的零氪能力模块</span></div>
+  </section>
+
+  <div class="toolbar" aria-label="报告筛选工具">
+    <input id="search" type="search" placeholder="搜索项目、职责或关键词…" aria-label="搜索报告内容" />
+    <select id="evidence" aria-label="按证据等级筛选"><option value="all">全部证据等级</option><option value="A">A｜原始/高可信</option><option value="B">B｜媒体/行业来源</option><option value="C">C｜合理推定</option><option value="D">D｜尚未公开</option></select>
+    <button class="active" data-mode="all">全部内容</button><button data-mode="confirmed">公开确认</button><button data-mode="boundary">收费与边界</button>
+  </div>
+
+  <section class="section" id="model">
+    <h2>一、合作模式</h2><p class="section-intro">零氪的公开角色更接近数字化临床研究与患者管理服务商，而非医院的替代者。</p>
+    <div class="tabs" role="tablist" aria-label="合作模式分类"><button class="tab active" data-tab="research">临床科研支持</button><button class="tab" data-tab="digital">疾病数字化管理</button><button class="tab" data-tab="navigation">AI 患者领航</button></div>
+    <div class="card panel" data-panel="research"><h3>IIT / 临床科研支持</h3><p>北肿提供研究者、研究方案、伦理和临床试验机构；零氪提供 IIT 基金、Linklab EDC、SMO、数据存储分析、方法学和随访支持。</p></div>
+    <div class="card panel" data-panel="digital" hidden><h3>疾病全流程数字化管理</h3><p>以 LinkData、LinkCare、5G/物联网和 AI 模型支持肺癌等疾病的诊断、治疗、监护和随访管理。</p></div>
+    <div class="card panel" data-panel="navigation" hidden><h3>AI 患者领航 / 临床试验招募</h3><p>AI 后台识别潜在受试者，驻院领航员进行沟通和跟进，研究医生依据试验方案作出最终入组决定。</p></div>
+  </section>
+
+  <section class="section" id="timeline"><h2>二、公开合作时间线</h2><div class="card timeline">
+    <div class="time">2021</div><div class="event"><h3>IIT 研究示范基地与研究基金</h3><p>北肿国家临床试验机构与瑞尔沃德共建 IIT 研究示范基地和医学研究中心基金，支持 EDC、SMO、人才/研究基金及真实世界研究。</p></div>
+    <div class="time">2021 前后</div><div class="event"><h3>肺癌 AI 全流程健康管理</h3><p>公开报道涉及 LinkData、LinkCare、5G/物联网肺癌健康管理及食管鳞癌术后生存预测模型技术支持。</p></div>
+    <div class="time">2026-02</div><div class="event"><h3>北大医学—零氪联合实验室</h3><p>聚焦真实世界证据转化与监管科学，不等同于已经公开证明的北肿单院患者入院项目。</p></div>
+    <div class="time">2026-10</div><div class="event"><h3>AI 患者领航运营体系</h3><p>零氪与北肿等机构合作建设，由 AI 引擎、驻院领航团队、运营规范三部分组成。</p></div>
+  </div></section>
+
+  <section class="section" id="projects"><h2>三、项目与能力清单</h2><p class="section-intro">输入关键词或选择证据等级，可快速缩小范围。</p><div class="project-grid" id="projectGrid">
+    <article class="project searchable" data-evidence="A B"><h3>IIT 研究示范基地 / 基金</h3><p>支持北肿一批 IIT 研究，包含研究基金、方法学、随访、数据存储分析和成果转化。</p><div class="tags"><span class="tag">IIT</span><span class="tag green">公开确认</span></div></article>
+    <article class="project searchable" data-evidence="A B"><h3>Linklab EDC 与 SMO</h3><p>用于研究数据采集、研究现场支持和临床研究交付。</p><div class="tags"><span class="tag">EDC</span><span class="tag">SMO</span></div></article>
+    <article class="project searchable" data-evidence="B"><h3>肺癌 AI 全流程健康管理</h3><p>覆盖早期筛查、辅助诊断、治疗前辅助决策、监护和随访等环节。</p><div class="tags"><span class="tag">肺癌</span><span class="tag amber">历史项目</span></div></article>
+    <article class="project searchable" data-evidence="B"><h3>5G / 物联网健康管理</h3><p>连接院内外患者数据和设备，支持肺癌患者全流程数字化管理。</p><div class="tags"><span class="tag">5G</span><span class="tag">物联网</span></div></article>
+    <article class="project searchable" data-evidence="B"><h3>食管鳞癌术后生存预测模型</h3><p>零氪为北肿相关研究提供技术支持，模型部署和当前运行状态未公开。</p><div class="tags"><span class="tag">预测模型</span><span class="tag amber">细节未公开</span></div></article>
+    <article class="project searchable" data-evidence="A B"><h3>AI 患者领航运营体系</h3><p>AI 识别、驻院领航员沟通跟进、运营规范与审计记录共同构成体系。</p><div class="tags"><span class="tag">招募</span><span class="tag green">当前公开报道</span></div></article>
+    <article class="project searchable" data-evidence="A"><h3>北大医学联合实验室</h3><p>聚焦监管证据统计、精准临床研究、智能监管技术、标准体系和证据转化。</p><div class="tags"><span class="tag">RWE</span><span class="tag">监管科学</span></div></article>
+    <article class="project searchable" data-evidence="D"><h3>具体北肿在研试验清单</h3><p>公开资料尚未完整披露试验编号、病种清单、患者数量和当前运行状态。</p><div class="tags"><span class="tag amber">待核实</span></div></article>
+  </div><p id="empty" class="notice" hidden>没有找到匹配内容。</p></section>
+
+  <section class="section" id="flow"><h2>四、患者入院 / 入组路径</h2><p class="section-intro">“入院”与“入组”不是同一件事：公开证据支持的是医院既有诊疗场景中的临床试验识别和转交。</p><div class="flow" aria-label="患者入组流程">
+    <div class="step"><b>01｜入口</b><strong>患者进入北肿医疗系统</strong><small>门诊、住院、检查或随访</small></div>
+    <div class="step"><b>02｜识别</b><strong>AI 后台解析病历</strong><small>匹配试验和提醒节点</small></div>
+    <div class="step"><b>03｜预筛</b><strong>研究护士核对条件</strong><small>病种、分期、既往治疗等</small></div>
+    <div class="step"><b>04｜沟通</b><strong>驻院领航员跟进</strong><small>患教、科普、预约和随访</small></div>
+    <div class="step"><b>05｜判断</b><strong>研究医生医学评估</strong><small>AI 不作最终入组决定</small></div>
+    <div class="step"><b>06｜同意</b><strong>知情同意与伦理程序</strong><small>患者自愿参与并可退出</small></div>
+    <div class="step"><b>07｜治疗</b><strong>按方案门诊或住院</strong><small>研究治疗、检查和安全性管理</small></div>
+    <div class="step"><b>08｜随访</b><strong>EDC、数据与 RWE</strong><small>质控、统计和成果转化</small></div>
+  </div></section>
+
+  <section class="section" id="fees"><h2>五、收费与责任边界</h2><div class="tabs" role="tablist" aria-label="收费边界"><button class="tab active" data-tab="fee-fact">能确认的事实</button><button class="tab" data-tab="fee-check">实际核查依据</button></div>
+    <div class="card panel" data-panel="fee-fact"><div class="notice good">未发现患者向零氪支付“入院费”或“入组费”的公开证据。</div><p>这不等于所有试验相关医疗费用都免费。普通挂号、诊察、住院、常规检查和治疗按医院及医保规则执行；研究额外检查、研究药物和研究操作的承担方式，要看具体方案、知情同意书、经费预算和医院规则。</p><div class="notice">零氪与医院之间的系统、SMO、研究基金和数据服务费用属于机构/项目层面安排，公开金额和结算方式未披露。</div></div>
+    <div class="card panel" data-panel="fee-check" hidden><details open><summary>临床试验方案与研究者手册</summary><p>确认哪些医疗行为属于研究必要项目。</p></details><details><summary>伦理批件、知情同意书与费用承担说明</summary><p>确认患者需不需要承担费用、补偿如何发放及退出权利。</p></details><details><summary>医院收费与医保结算规则</summary><p>确认普通医疗项目和研究项目的收费边界。</p></details><details><summary>零氪—医院—申办方服务协议</summary><p>确认系统、SMO、领航员和数据服务的付款路径。</p></details></div>
+  </section>
+
+  <section class="section" id="roles"><h2>六、零氪参与模块与职责</h2><p class="section-intro">具体部门名称和人员未公开，以下按公开能力与项目流程归纳。</p><div class="role-grid">
+    <div class="role searchable" data-evidence="B C"><span class="level c">B/C</span><strong>商务与战略合作</strong><p>合作谈判、基金/联合实验室机制、项目立项与客户关系。</p></div>
+    <div class="role searchable" data-evidence="A B"><span class="level a">A/B</span><strong>临床研究 / IIT 项目管理</strong><p>研究方案协调、项目计划、研究中心协作和交付管理。</p></div>
+    <div class="role searchable" data-evidence="A"><span class="level a">A</span><strong>SMO / 现场运营</strong><p>现场协调、研究护士/协调员支持、访视和文件管理。</p></div>
+    <div class="role searchable" data-evidence="A"><span class="level a">A</span><strong>EDC / 数据管理</strong><p>数据采集、质控、锁库和审计追踪。</p></div>
+    <div class="role searchable" data-evidence="A"><span class="level a">A</span><strong>AI 与医学 NLP</strong><p>病历解析、患者预筛、试验匹配、提醒和模型迭代。</p></div>
+    <div class="role searchable" data-evidence="A B"><span class="level b">A/B</span><strong>产品与技术实施</strong><p>LinkData、LinkCare、接口、权限、部署和运维。</p></div>
+    <div class="role searchable" data-evidence="A"><span class="level a">A</span><strong>患者运营 / 驻院领航</strong><p>患教、沟通、预约、失访管理、障碍解决和互动记录。</p></div>
+    <div class="role searchable" data-evidence="A C"><span class="level c">A/C</span><strong>医学方法学 / 统计 / RWE</strong><p>研究设计、统计分析、证据生成和监管转化。</p></div>
+    <div class="role searchable" data-evidence="C D"><span class="level d">C/D</span><strong>合规、隐私、法务与财务</strong><p>数据授权、权限审计、合同、预算、知识产权和责任边界；北肿项目具体归口未公开。</p></div>
+  </div></section>
+
+  <section class="section" id="evidence"><h2>七、证据与待核实事项</h2><div class="card"><details open><summary>A｜原始或高可信来源</summary><p>北大医学部官网联合实验室报道；国际在线对 AI 患者领航体系的报道。</p></details><details><summary>B｜媒体或行业机构来源</summary><p>中国日报转载中国网关于 IIT 基金、EDC、SMO 和肺癌 AI 健康管理的报道；行业机构项目介绍。</p></details><details><summary>C｜合理推定</summary><p>零氪内部的项目制部门配置、合规和数据安全职责，是依据公开服务内容和临床研究流程归纳，非官方组织架构。</p></details><details><summary>D｜尚未公开</summary><p>具体合同、预算、驻院人数、试验编号、患者数量、收费清单、SOP、部门汇报线和当前运营数据。</p></details></div></section>
+
+  <section class="section" id="sources"><h2>八、参考来源</h2><ol class="source-list"><li><a href="https://bynews.bjmu.edu.cn/zhxw/2026/6be96ea365ef4389af52f98281230c51.htm" target="_blank" rel="noreferrer">北京大学医学部：北大医学—零氪真实世界证据转化与监管科学联合实验室正式揭牌</a></li><li><a href="https://news.cri.cn/20261012/c863316c-2c11-4c84-b23f-ccf432e948c3.html" target="_blank" rel="noreferrer">国际在线：AI患者领航员：让临床试验主动走向患者</a></li><li><a href="https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/snl9a7/stories/WS61b6ff1ca3107be4979fcc6a.html" target="_blank" rel="noreferrer">中国日报转载中国网：零氪旗下瑞尔沃德和北京肿瘤医院国家临床试验机构共设 IIT 研究基金</a></li><li>中国医院协会信息专业委员会：北京大学肿瘤医院肺癌 AI 健康全流程管理项目。</li></ol></section>
+  <footer class="footer">本页面将公开资料中的事实、推定和待核实事项分层呈现，不构成医疗、法律或投资建议。</footer>
+</main>
+<script>
+  const root=document;
+  const tabs=[...root.querySelectorAll('.tab')];
+  tabs.forEach(btn=>btn.addEventListener('click',()=>{
+    const group=btn.closest('[role="tablist"]');
+    group.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    const name=btn.dataset.tab;
+    const scope=group.parentElement;
+    scope.querySelectorAll('.panel').forEach(p=>p.hidden=p.dataset.panel!==name);
+  }));
+  const search=root.querySelector('#search'), evidence=root.querySelector('#evidence'), empty=root.querySelector('#empty');
+  const items=[...root.querySelectorAll('.searchable')];
+  function filter(){
+    const q=search.value.trim().toLowerCase(), e=evidence.value; let shown=0;
+    items.forEach(el=>{const hitText=!q||el.textContent.toLowerCase().includes(q);const hitEvidence=e==='all'||(el.dataset.evidence||'').split(' ').includes(e);const show=hitText&&hitEvidence;el.hidden=!show;if(show)shown++});
+    empty.hidden=shown>0;
+  }
+  search.addEventListener('input',filter); evidence.addEventListener('change',filter);
+  root.querySelectorAll('.toolbar button').forEach(btn=>btn.addEventListener('click',()=>{
+    root.querySelectorAll('.toolbar button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+    const mode=btn.dataset.mode; search.value=''; evidence.value='all';
+    if(mode==='confirmed') evidence.value='A';
+    if(mode==='boundary') search.value='收费'; filter();
+  }));
+</script>
+</body>
+</html>
